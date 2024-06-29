@@ -1,0 +1,109 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: unit_1_data_preparation/global_data_products/training_set.py
+    global_data_product:
+      uuid: training_set
+  downstream_blocks:
+  - xgboost
+  - hyperparameter_truning/xgboost
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: Training set
+  retry_config: null
+  status: executed
+  timeout: null
+  type: global_data_product
+  upstream_blocks: []
+  uuid: training_set
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: unit_1_data_preparation/transformers/hyperparameter_truning/xgboost.py
+  downstream_blocks:
+  - xgboost
+  - dashboard_data_source
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: Hyperparameter truning/XGBoost
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - training_set
+  uuid: hyperparameter_truning/xgboost
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: unit_1_data_preparation/data_exporters/xgboost.py
+  downstream_blocks:
+  - dashboard_data_source
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: XGBoost
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - training_set
+  - hyperparameter_truning/xgboost
+  uuid: xgboost
+- all_upstream_blocks_executed: true
+  color: pink
+  configuration:
+    file_source:
+      path: unit_1_data_preparation/custom/dashboard_data_source.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: Dashboard data source
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - xgboost
+  - hyperparameter_truning/xgboost
+  uuid: dashboard_data_source
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-06-09 18:18:15.033524+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: xgboost_training
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: xgboost_training
+variables:
+  early_stopping_rounds: 3
+  max_depth: 10
+  max_evaluations: 3
+variables_dir: /home/src/mage_data/unit_1_data_preparation
+widgets: []

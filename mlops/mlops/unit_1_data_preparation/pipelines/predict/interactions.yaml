@@ -1,9 +1,0 @@
-blocks:
-  inference:
-  - name: Make predictions without API requests
-    uuid: playground.yaml
-  model:
-  - name: Make predictions without API requests
-    uuid: playground.yaml
-layout: []
-permissions: []
